@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id(Plugins.kapt)
     id(Plugins.androidLibrary)

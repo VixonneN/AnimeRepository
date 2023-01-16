@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id(Plugins.kapt)
     id(Plugins.androidLibrary)
@@ -46,6 +48,9 @@ android {
 dependencies {
 
     implementation(Libs.Application.Network.retrofit)
+    implementation(Libs.View.lifecycleRuntime)
+    implementation(Libs.Application.Orbit.orbitViewModel)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 
     testImplementation(Libs.View.Test.jUnit)
 

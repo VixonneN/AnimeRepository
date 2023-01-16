@@ -3,10 +3,10 @@
 import org.gradle.api.JavaVersion
 
 object Config {
-    val compatibleJavaVersion = JavaVersion.VERSION_11
-    const val jvmTarget = "11"
+    val compatibleJavaVersion = JavaVersion.VERSION_18
+    const val jvmTarget = "18"
     const val kotlinVersion = "1.7.20"
-    const val gradleAndroidVersion = "7.3.1"
+    const val gradleAndroidVersion = "7.4.0"
     const val daggerVersion = "2.44"
 }
 
@@ -43,7 +43,7 @@ object Project {
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Config.daggerVersion}"
     }
     object Android {
-        const val androidGradle = "com.android.tools.build:gradle:7.3.1"
+        const val androidGradle = "com.android.tools.build:gradle:7.4.0"
         const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Config.kotlinVersion}"
     }
 }
