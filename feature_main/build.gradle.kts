@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.khomichenko.data"
+    namespace = "ru.khomichenko.feature_main"
     compileSdk = Android.compileSdk
 
     defaultConfig {
@@ -42,25 +42,37 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Libs.Compose.composeVersion
+    }
 }
 
 dependencies {
+
     implementation(Libs.Application.DependencyInjection.hilt)
     kapt(Libs.Application.DependencyInjection.kaptDagger)
 
-    implementation(Libs.Application.Network.retrofit)
-    implementation(Libs.Application.Network.okhttp)
-    implementation(Libs.Application.Network.moshi)
-    kapt(Libs.Application.Network.kaptMoshi)
-    implementation(Libs.Application.Network.converter_moshi)
-    implementation(Libs.Application.Network.okhttp_login_interceptor)
+    implementation(Libs.View.coreKtx)
+    implementation(Libs.View.lifecycleRuntime)
 
-    implementation(Libs.Application.Database.roomRuntime)
-    implementation(Libs.Application.Database.roomKtx)
-    kapt(Libs.Application.Database.kaptRoom)
-    implementation(Libs.Application.Database.roomPadding)
+    implementation(Libs.Compose.activity)
+    implementation(Libs.Compose.ui)
+    implementation(Libs.Compose.preview)
+    implementation(Libs.Compose.material)
+    implementation(Libs.Application.DependencyInjection.hiltNavigationCompose)
 
-    implementation(Libs.Application.Coroutines.coroutines)
+    testImplementation(Libs.View.Test.jUnit)
+
+    androidTestImplementation(Libs.View.AndroidTest.jUnit)
+    androidTestImplementation(Libs.View.AndroidTest.espresso)
+    androidTestImplementation(Libs.Compose.Test.uiJunit)
+    androidTestImplementation(Libs.Compose.Test.uiManifest)
+
+    debugImplementation(Libs.Compose.Debug.uiTooling)
+    debugImplementation(Libs.Compose.Debug.uiTestManifest)
 
     implementation(project(Modules.domain))
     implementation(project(Modules.core))

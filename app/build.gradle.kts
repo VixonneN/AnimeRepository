@@ -95,6 +95,8 @@ dependencies {
     implementation(Libs.Compose.material)
     implementation(Libs.Application.DependencyInjection.hiltNavigationCompose)
 
+    implementation(Libs.Compose.navigation)
+
     testImplementation(Libs.View.Test.jUnit)
 
     androidTestImplementation(Libs.View.AndroidTest.jUnit)
@@ -104,6 +106,9 @@ dependencies {
 
     debugImplementation(Libs.Compose.Debug.uiTooling)
     debugImplementation(Libs.Compose.Debug.uiTestManifest)
+
     implementation(project(Modules.core))
     implementation(project(Modules.domain))
+    implementation(project(Modules.featureMain))
+    implementation(project(Modules.data))
 }

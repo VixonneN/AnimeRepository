@@ -20,6 +20,7 @@ class AnimeNetworkRepositoryImpl @Inject constructor(
 
     override suspend fun getSleepingGifs(): DataStatus<GifsResponseEntity> =
         withContext(Dispatchers.IO) {
+            DataStatus.Loading
             try {
                 val data = animeApi.sleepingGifs().toEntity()
                 DataStatus.Success(data)

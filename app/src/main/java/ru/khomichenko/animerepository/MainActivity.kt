@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
+import ru.khomichenko.animerepository.ui.navigation.AnimatedNavigation
 import ru.khomichenko.animerepository.ui.theme.AnimeRepositoryTheme
 
 @AndroidEntryPoint
@@ -20,28 +20,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             AnimeRepositoryTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background,
-
+                val scaffoldState = rememberScaffoldState()
+                Scaffold(
+                    scaffoldState = scaffoldState,
                 ) {
-                    Greeting("Android")
+                    AnimatedNavigation(scaffoldState = scaffoldState, modifier = Modifier
+                        .padding(paddingValues = it)
+                        .fillMaxSize()
+                    )
                 }
             }
         }
     }
 }
-//todo доделать di,
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AnimeRepositoryTheme {
-        Greeting("Android")
-    }
-}
+//todo решить вопрос с di, добавить UI реализацию в MVI

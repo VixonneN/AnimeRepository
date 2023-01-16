@@ -58,6 +58,8 @@ object Libs {
 
         object Test {
             const val jUnit = "junit:junit:4.13.2"
+            const val mockito = "org.mockito:mockito-core:4.1.0"
+            const val unit_coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
         }
         object AndroidTest {
             const val jUnit = "androidx.test.ext:junit:1.1.5"
@@ -93,7 +95,14 @@ object Libs {
             const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
         }
     }
+
     object Application {
+        object Orbit {
+            private const val orbitVersion = "4.3.2"
+
+            const val orbitViewModel = "org.orbit-mvi:orbit-viewmodel:$orbitVersion"
+            const val orbitCompose = "org.orbit-mvi:orbit-compose:$orbitVersion"
+        }
 
         object DependencyInjection {
             const val hilt = "com.google.dagger:hilt-android:${Config.daggerVersion}"
@@ -115,6 +124,7 @@ object Libs {
             const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$moshiVersion"
             const val moshiAdapters = "com.squareup.moshi:moshi-adapters:$moshiVersion"
             const val kaptMoshi = "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+            const val converter_moshi = "com.squareup.retrofit2:converter-moshi:2.9.0"
         }
 
         object Database {
@@ -139,4 +149,5 @@ object Modules {
     const val data = ":data"
     const val domain = ":domain"
     const val core = ":core"
+    const val featureMain = ":feature_main"
 }
