@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gifs">
+        <item>High Five</item>
+        <item>Happy</item>
+        <item>Sleep</item>
+        <item>Hand hold</item>
+        <item>Laugh</item>
+        <item>Bite</item>
+        <item>Poke</item>
+        <item>Tickle</item>
+        <item>Kiss</item>
+        <item>Wave</item>
+        <item>Thumbs up</item>
+        <item>Stare</item>
+        <item>Cuddle</item>
+        <item>Smile</item>
+        <item>Baka</item>
+        <item>Blush</item>
+        <item>Nom</item>
+        <item>Think</item>
+        <item>Pout</item>
+        <item>Facepalm</item>
+        <item>Wink</item>
+        <item>Shoot</item>
+        <item>Smug</item>
+        <item>Nope</item>
+        <item>Cry</item>
+        <item>Pat</item>
+        <item>Nod</item>
+        <item>Punch</item>
+        <item>Dance</item>
+        <item>Feed</item>
+        <item>Shrug</item>
+        <item>Bored</item>
+        <item>Kick</item>
+        <item>Hug</item>
+        <item>Yeet</item>
+        <item>Slap</item>
+        <item>Slap</item>
+        <item>Slap</item>
+    </string-array>
+
+    <string-array name="png">
+        <item>Waifu</item>
+        <item>Kitsune</item>
+        <item>Husbando</item>
+        <item>Neko</item>
+    </string-array>
+</resources>

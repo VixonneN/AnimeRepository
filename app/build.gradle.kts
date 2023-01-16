@@ -99,6 +99,9 @@ dependencies {
 
     implementation(Libs.Compose.navigation)
 
+    implementation(Libs.Application.Orbit.orbitCompose)
+    implementation(Libs.Application.Orbit.orbitViewModel)
+
     testImplementation(Libs.View.Test.jUnit)
 
     androidTestImplementation(Libs.View.AndroidTest.jUnit)

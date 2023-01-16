@@ -1,10 +1,10 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id(Plugins.kapt)
     id(Plugins.androidLibrary)
     id(Plugins.kotlin)
     id(Plugins.daggerHilt)
+    id(Plugins.kapt)
 }
 
 android {
@@ -13,7 +13,6 @@ android {
 
     defaultConfig {
         minSdk = Android.minSdk
-        targetSdk = Android.targetSdk
 
         testInstrumentationRunner = Android.testInstrumentalRunner
     }
@@ -59,6 +58,9 @@ dependencies {
 
     implementation(Libs.View.coreKtx)
     implementation(Libs.View.lifecycleRuntime)
+
+    implementation(Libs.Application.Orbit.orbitCompose)
+    implementation(Libs.Application.Orbit.orbitViewModel)
 
     implementation(Libs.Compose.activity)
     implementation(Libs.Compose.ui)
