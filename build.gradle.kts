@@ -10,7 +10,6 @@ buildscript {
         classpath(Project.Android.kotlinGradle)
 
         classpath(Project.Dagger.daggerHilt)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
     }
 }
 
@@ -23,4 +22,8 @@ allprojects {
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

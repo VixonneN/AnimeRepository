@@ -1,0 +1,89 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
+package ru.khomichenko.animerepository.ui.navigation
+
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.ScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.feature_list_content.states.ListTypesContentEvent
+import com.example.feature_list_content.states.ListTypesSideEffect
+import com.example.feature_list_content.ui.ListTypesContentScreen
+import com.example.feature_list_content.view_model.ListTypesContentViewModel
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
+import ru.khomichenko.feature_main.main.states.MainScreenSideEffect
+import ru.khomichenko.feature_main.main.ui.MainScreen
+import ru.khomichenko.feature_main.main.view_model.MainViewModel
+
+@OptIn(ExperimentalAnimationApi::class)
+@Composable
+fun AnimatedNavigation(
+    modifier: Modifier = Modifier,
+    scaffoldState: ScaffoldState
+) {
+    val navController = rememberAnimatedNavController()
+    AnimatedNavHost(navController = navController, startDestination = Screens.MainScreen.route) {
+        composable(
+            route = Screens.MainScreen.route
+        ) {
+            val mainViewModel: MainViewModel = hiltViewModel()
+            val screenState = mainViewModel.collectAsState().value
+
+            MainScreen(
+                scaffoldState = scaffoldState,
+                mainScreenState = screenState,
+                onEvent = { mainViewModel.dispatch(it) })
+
+            mainViewModel.collectSideEffect { sideEffect ->
+                when (sideEffect) {
+                    is MainScreenSideEffect.NavigateToGifScreen -> {
+                        navController.navigate(
+                            route = Screens.ListTypesContentScreens.route(sideEffect.contentType)
+                        )
+                    }
+                    is MainScreenSideEffect.NavigateToImageScreen -> {
+                        navController.navigate(
+                            route = Screens.ListTypesContentScreens.route(sideEffect.contentType)
+                        )
+                    }
+                }
+            }
+        }
+
+        composable(
+            route = Screens.ListTypesContentScreens.route,
+            arguments = Screens.ListTypesContentScreens.arguments
+        ) { bundle ->
+            val viewModel: ListTypesContentViewModel = hiltViewModel()
+            val screenState = viewModel.collectAsState().value
+
+            val typeScreen = bundle.arguments?.getString("type_content") ?: ""
+
+            LaunchedEffect(key1 = Unit, block = {
+                viewModel.dispatch(ListTypesContentEvent.SelectCorrectContentType(typeScreen))
+            })
+
+            ListTypesContentScreen(
+                scaffoldState = scaffoldState,
+                screenState = screenState,
+                event = { viewModel.dispatch(it) }
+            )
+
+            viewModel.collectSideEffect { sideEffect ->
+                when (sideEffect) {
+                    is ListTypesSideEffect.NavigateToSecondScreen -> {
+                        //todo next nav
+//                        navController.navigate()
+                    }
+                }
+            }
+        }
+    }
+}
+
