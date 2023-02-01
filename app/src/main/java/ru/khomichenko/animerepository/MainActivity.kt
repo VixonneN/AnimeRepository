@@ -33,4 +33,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-//todo решить вопрос с di, добавить UI реализацию в MVI

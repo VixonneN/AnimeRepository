@@ -3,6 +3,7 @@ package ru.khomichenko.core.utils
 import androidx.lifecycle.ViewModel
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
+import java.io.Closeable
 
 abstract class MviViewModel<STATE : Any, SIDE_EFFECT : Any, EVENT : Any>(
     initialState: STATE

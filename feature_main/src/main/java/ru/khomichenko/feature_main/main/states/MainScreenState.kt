@@ -1,4 +1,4 @@
-package ru.khomichenko.feature_main.states
+package ru.khomichenko.feature_main.main.states
 
 //states of screen
 data class MainScreenState(

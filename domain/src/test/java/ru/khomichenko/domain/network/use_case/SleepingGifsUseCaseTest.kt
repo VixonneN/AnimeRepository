@@ -32,7 +32,6 @@ internal class SleepingGifsUseCaseTest {
     private fun testDataStatusError() : DataStatus<GifsResponseEntity> =
         DataStatus.Error(ErrorType.NotFound)
 
-
     //todo
     @Test
     fun `WHEN make request GET data`() = runBlocking {
