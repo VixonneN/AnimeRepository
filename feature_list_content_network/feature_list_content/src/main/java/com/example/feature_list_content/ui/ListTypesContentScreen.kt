@@ -5,7 +5,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringArrayResource
 import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesScreenState

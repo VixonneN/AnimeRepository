@@ -150,5 +150,5 @@ object Modules {
     const val domain = ":domain"
     const val core = ":core"
     const val featureMain = ":feature_formats:feature_main"
-    const val featureListTypes = ":feature_list_content"
+    const val featureListTypes = ":feature_list_content_network:feature_list_content"
 }
