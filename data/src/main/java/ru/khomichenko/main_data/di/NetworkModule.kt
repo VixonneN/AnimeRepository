@@ -1,24 +1,19 @@
 package ru.khomichenko.main_data.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import ru.khomichenko.domain.network.repository.AnimeNetworkRepository
 import ru.khomichenko.main_data.network.data_source.AnimeApi
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
+import ru.khomichenko.main_data.network.repository.AnimeNetworkRepositoryImpl
 
-@Module
-@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    @Singleton
-    @Provides
-    fun provideNetworkApi(retrofit: Retrofit) : AnimeApi =
+    val module = module {
+        single { provideNetworkApi(get()) }
+        single<AnimeNetworkRepository> { AnimeNetworkRepositoryImpl(get()) }
+    }
+
+    private fun provideNetworkApi(retrofit: Retrofit) : AnimeApi =
         retrofit.create(AnimeApi::class.java)
 
 }

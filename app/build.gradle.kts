@@ -3,7 +3,6 @@
 plugins {
     id(Plugins.application)
     id(Plugins.kotlin)
-    id(Plugins.daggerHilt)
     id(Plugins.kapt)
 }
 
@@ -74,8 +73,8 @@ android {
 }
 
 dependencies {
-    implementation(Libs.Application.DependencyInjection.hilt)
-    kapt(Libs.Application.DependencyInjection.kaptDagger)
+    implementation(Libs.Application.DependencyInjection.koinAndroid)
+    implementation(Libs.Application.DependencyInjection.koinAndroidCompose)
 
     implementation(Libs.View.coreKtx)
     implementation(Libs.View.lifecycleRuntime)
@@ -95,7 +94,6 @@ dependencies {
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.preview)
     implementation(Libs.Compose.material)
-    implementation(Libs.Application.DependencyInjection.hiltNavigationCompose)
 
     implementation(Libs.Compose.navigation)
 
@@ -113,8 +111,9 @@ dependencies {
     debugImplementation(Libs.Compose.Debug.uiTestManifest)
 
     implementation(project(Modules.core))
-    implementation(project(Modules.domain))
+    implementation(project(Modules.featureContent))
     implementation(project(Modules.featureMain))
-    implementation(project(Modules.data))
+    implementation(project(Modules.featureMainData))
     implementation(project(Modules.featureListTypes))
+    implementation(project(Modules.network))
 }

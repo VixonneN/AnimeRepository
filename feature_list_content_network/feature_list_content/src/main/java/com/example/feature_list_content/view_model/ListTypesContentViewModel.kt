@@ -3,15 +3,12 @@ package com.example.feature_list_content.view_model
 import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesScreenState
 import com.example.feature_list_content.states.ListTypesSideEffect
-import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import ru.khomichenko.core.utils.ContentType
 import ru.khomichenko.core.utils.MviViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class ListTypesContentViewModel @Inject constructor(
+class ListTypesContentViewModel(
 
 ) : MviViewModel<ListTypesScreenState, ListTypesSideEffect, ListTypesContentEvent>(initialState = ListTypesScreenState()) {
 

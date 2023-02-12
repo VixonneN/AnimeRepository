@@ -105,9 +105,15 @@ object Libs {
         }
 
         object DependencyInjection {
+            private const val koinVersion = "3.3.3"
+            private const val koinCompose = "3.4.2"
+
             const val hilt = "com.google.dagger:hilt-android:${Config.daggerVersion}"
             const val kaptDagger = "com.google.dagger:hilt-compiler:${Config.daggerVersion}"
             const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+            const val koinAndroid = "io.insert-koin:koin-android:$koinVersion"
+            const val koinAndroidCompose = "io.insert-koin:koin-androidx-compose:$koinCompose"
         }
 
         object Network {
@@ -150,5 +156,8 @@ object Modules {
     const val domain = ":domain"
     const val core = ":core"
     const val featureMain = ":feature_formats:feature_main"
+    const val featureMainData = ":feature_formats:feature_main_data"
     const val featureListTypes = ":feature_list_content_network:feature_list_content"
+    const val network = ":network"
+    const val featureContent = ":feature_content"
 }

@@ -3,7 +3,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlin)
-    id(Plugins.kapt)
 }
 
 android {

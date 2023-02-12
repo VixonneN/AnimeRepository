@@ -8,8 +8,6 @@ buildscript {
     dependencies {
         classpath(Project.Android.androidGradle)
         classpath(Project.Android.kotlinGradle)
-
-        classpath(Project.Dagger.daggerHilt)
     }
 }
 

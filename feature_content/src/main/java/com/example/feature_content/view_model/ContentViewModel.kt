@@ -1,18 +1,16 @@
 package com.example.feature_content.view_model
 
+import androidx.lifecycle.viewModelScope
 import com.example.feature_content.states.ContentEvent
 import com.example.feature_content.states.ContentScreenState
 import com.example.feature_content.states.ContentSideEffect
-import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import ru.khomichenko.core.utils.MviViewModel
-import ru.khomichenko.domain.network.use_case.SleepingGifsUseCase
-import javax.inject.Inject
 
-@HiltViewModel
-class ContentViewModel @Inject constructor(
-    private val sleepingGifsUseCase: SleepingGifsUseCase
+class ContentViewModel(
 ) : MviViewModel<ContentScreenState, ContentSideEffect, ContentEvent>(
     initialState = ContentScreenState()
 ) {
@@ -24,9 +22,11 @@ class ContentViewModel @Inject constructor(
 
     private fun loadContent() {
         intent {
-            reduce { state.copy(loading = true) }
-            sleepingGifsUseCase()
-            reduce { state.copy(loading = false) }
+            viewModelScope.launch {
+                reduce { state.copy(loading = true) }
+                delay(2000)
+                reduce { state.copy(loading = false) }
+            }
         }
     }
 }

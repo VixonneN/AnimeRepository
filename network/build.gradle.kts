@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlin)
-    id(Plugins.daggerHilt)
     id(Plugins.kapt)
 }
 
@@ -44,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation(Libs.Application.DependencyInjection.hilt)
-    kapt(Libs.Application.DependencyInjection.kaptDagger)
+    implementation(Libs.Application.DependencyInjection.koinAndroid)
+    implementation(Libs.Application.DependencyInjection.koinAndroidCompose)
 
     implementation(Libs.Application.Network.retrofit)
     implementation(Libs.Application.Network.okhttp)
@@ -61,6 +60,5 @@ dependencies {
 
     implementation(Libs.Application.Coroutines.coroutines)
 
-    implementation(project(Modules.domain))
     implementation(project(Modules.core))
 }

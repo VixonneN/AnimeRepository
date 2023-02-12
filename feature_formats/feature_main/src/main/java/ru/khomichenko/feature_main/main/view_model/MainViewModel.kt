@@ -1,30 +1,22 @@
 package ru.khomichenko.feature_main.main.view_model
 
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.feature_main_data.network.repository.CountContentNetworkRepository
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import ru.khomichenko.core.utils.ContentType
 import ru.khomichenko.core.utils.MviViewModel
-import ru.khomichenko.domain.network.use_case.SleepingGifsUseCase
 import ru.khomichenko.feature_main.main.states.MainScreenEvent
 import ru.khomichenko.feature_main.main.states.MainScreenSideEffect
 import ru.khomichenko.feature_main.main.states.MainScreenState
-import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
-    private val sleepUseCase: SleepingGifsUseCase
+class MainViewModel(
+    private val countContentNetworkRepository: CountContentNetworkRepository
 ) : MviViewModel<MainScreenState, MainScreenSideEffect, MainScreenEvent>(initialState = MainScreenState()) {
 
     override fun dispatch(event: MainScreenEvent) {
-        when(event) {
-            MainScreenEvent.OnGifsClick -> {
-                //some event
-                onGifClick()
-            }
-            MainScreenEvent.OnImagesClick -> {
-                onPicturesClick()
-            }
+        when (event) {
+            MainScreenEvent.OnGifsClick -> onGifClick()
+            MainScreenEvent.OnImagesClick -> onPicturesClick()
         }
     }
 
