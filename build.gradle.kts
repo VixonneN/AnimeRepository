@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Project.Android.androidGradle)
         classpath(Project.Android.kotlinGradle)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.21")
     }
 }
 

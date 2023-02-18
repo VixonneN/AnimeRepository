@@ -206,5 +206,6 @@ object Modules {
     const val featureMainData = ":feature_formats:feature_main_data"
     const val featureListTypes = ":feature_list_content_network:feature_list_content"
     const val network = ":network"
-    const val featureContent = ":feature_content"
+    const val featureContent = ":feature_content_folder:feature_content"
+    const val featureContentData = "feature_content_folder:feature_content_data"
 }
