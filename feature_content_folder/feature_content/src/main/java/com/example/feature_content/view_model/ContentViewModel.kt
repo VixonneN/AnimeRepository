@@ -17,6 +17,7 @@ class ContentViewModel(
     override fun dispatch(event: ContentEvent) {
         when(event) {
             ContentEvent.LoadContent -> {  }
+            else -> {}
         }
     }
 
