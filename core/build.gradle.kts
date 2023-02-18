@@ -3,7 +3,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlin)
-    id(Plugins.kapt)
 }
 
 android {
@@ -32,7 +31,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 file("proguard-rules.pro")
             )
-
         }
     }
     compileOptions {
@@ -49,7 +47,8 @@ dependencies {
     implementation(Libs.Application.Network.retrofit)
     implementation(Libs.View.lifecycleRuntime)
     implementation(Libs.Application.Orbit.orbitViewModel)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation(Libs.View.lifecycleRuntime)
+    implementation(Libs.View.lifecycleViewModel)
 
     testImplementation(Libs.View.Test.jUnit)
 

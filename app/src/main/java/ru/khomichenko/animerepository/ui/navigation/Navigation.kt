@@ -7,7 +7,6 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesSideEffect
 import com.example.feature_list_content.ui.ListTypesContentScreen
@@ -15,6 +14,7 @@ import com.example.feature_list_content.view_model.ListTypesContentViewModel
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 import ru.khomichenko.feature_main.main.states.MainScreenSideEffect
@@ -32,7 +32,7 @@ fun AnimatedNavigation(
         composable(
             route = Screens.MainScreen.route
         ) {
-            val mainViewModel: MainViewModel = hiltViewModel()
+            val mainViewModel: MainViewModel = koinViewModel()
             val screenState = mainViewModel.collectAsState().value
 
             MainScreen(
@@ -60,7 +60,7 @@ fun AnimatedNavigation(
             route = Screens.ListTypesContentScreens.route,
             arguments = Screens.ListTypesContentScreens.arguments
         ) { bundle ->
-            val viewModel: ListTypesContentViewModel = hiltViewModel()
+            val viewModel: ListTypesContentViewModel = koinViewModel()
             val screenState = viewModel.collectAsState().value
 
             val typeScreen = bundle.arguments?.getString("type_content") ?: ""

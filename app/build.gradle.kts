@@ -3,7 +3,6 @@
 plugins {
     id(Plugins.application)
     id(Plugins.kotlin)
-    id(Plugins.daggerHilt)
     id(Plugins.kapt)
 }
 
@@ -63,7 +62,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Libs.Compose.kotlinCompiler
     }
     packagingOptions {
         resources {
@@ -74,8 +73,8 @@ android {
 }
 
 dependencies {
-    implementation(Libs.Application.DependencyInjection.hilt)
-    kapt(Libs.Application.DependencyInjection.kaptDagger)
+    implementation(Libs.Application.DependencyInjection.koinAndroid)
+    implementation(Libs.Application.DependencyInjection.koinAndroidCompose)
 
     implementation(Libs.View.coreKtx)
     implementation(Libs.View.lifecycleRuntime)
@@ -84,18 +83,17 @@ dependencies {
     implementation(Libs.Application.Network.okhttp)
     implementation(Libs.Application.Network.moshi)
     kapt(Libs.Application.Network.kaptMoshi)
-    implementation(Libs.Application.Network.okhttp_login_interceptor)
+    debugImplementation(Libs.Application.Network.okhttp_login_interceptor)
 
     implementation(Libs.Application.Database.roomRuntime)
     implementation(Libs.Application.Database.roomKtx)
     kapt(Libs.Application.Database.kaptRoom)
-    implementation(Libs.Application.Database.roomPadding)
+    implementation(Libs.Application.Database.roomPaging)
 
     implementation(Libs.Compose.activity)
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.preview)
     implementation(Libs.Compose.material)
-    implementation(Libs.Application.DependencyInjection.hiltNavigationCompose)
 
     implementation(Libs.Compose.navigation)
 
@@ -113,8 +111,9 @@ dependencies {
     debugImplementation(Libs.Compose.Debug.uiTestManifest)
 
     implementation(project(Modules.core))
-    implementation(project(Modules.domain))
+    implementation(project(Modules.featureContent))
     implementation(project(Modules.featureMain))
-    implementation(project(Modules.data))
+    implementation(project(Modules.featureMainData))
     implementation(project(Modules.featureListTypes))
+    implementation(project(Modules.network))
 }
