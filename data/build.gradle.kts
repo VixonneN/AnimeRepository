@@ -58,7 +58,7 @@ dependencies {
     implementation(Libs.Application.Database.roomRuntime)
     implementation(Libs.Application.Database.roomKtx)
     kapt(Libs.Application.Database.kaptRoom)
-    implementation(Libs.Application.Database.roomPadding)
+    implementation(Libs.Application.Database.roomPaging)
 
     implementation(Libs.Application.Coroutines.coroutines)
 

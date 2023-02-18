@@ -45,7 +45,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Libs.Compose.kotlinCompiler
     }
 }
 
@@ -60,10 +60,13 @@ dependencies {
     implementation(Libs.Application.Orbit.orbitCompose)
     implementation(Libs.Application.Orbit.orbitViewModel)
 
-    implementation(Libs.Compose.activity)
-    implementation(Libs.Compose.ui)
-    implementation(Libs.Compose.preview)
-    implementation(Libs.Compose.material)
+    implementation(platform(Libs.Boom.composeBoom))
+    implementation(Libs.Boom.activityCompose)
+    implementation(Libs.Boom.composeUi)
+    implementation(Libs.Boom.material2)
+    implementation(Libs.Boom.toolingPreviw)
+    debugImplementation(Libs.Boom.debugUiTooling)
+    androidTestImplementation(Libs.Boom.composeBoom)
 
     testImplementation(Libs.View.Test.jUnit)
 

@@ -62,7 +62,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Libs.Compose.composeVersion
+        kotlinCompilerExtensionVersion = Libs.Compose.kotlinCompiler
     }
     packagingOptions {
         resources {
@@ -83,12 +83,12 @@ dependencies {
     implementation(Libs.Application.Network.okhttp)
     implementation(Libs.Application.Network.moshi)
     kapt(Libs.Application.Network.kaptMoshi)
-    implementation(Libs.Application.Network.okhttp_login_interceptor)
+    debugImplementation(Libs.Application.Network.okhttp_login_interceptor)
 
     implementation(Libs.Application.Database.roomRuntime)
     implementation(Libs.Application.Database.roomKtx)
     kapt(Libs.Application.Database.kaptRoom)
-    implementation(Libs.Application.Database.roomPadding)
+    implementation(Libs.Application.Database.roomPaging)
 
     implementation(Libs.Compose.activity)
     implementation(Libs.Compose.ui)
