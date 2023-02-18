@@ -10,14 +10,12 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import ru.khomichenko.core.utils.MviViewModel
 
-class ContentViewModel(
-) : MviViewModel<ContentScreenState, ContentSideEffect, ContentEvent>(
+class ContentViewModel: MviViewModel<ContentScreenState, ContentSideEffect, ContentEvent>(
     initialState = ContentScreenState()
 ) {
     override fun dispatch(event: ContentEvent) {
         when(event) {
-            ContentEvent.LoadContent -> {  }
-            else -> {}
+            is ContentEvent.LoadContent -> { loadContent() }
         }
     }
 

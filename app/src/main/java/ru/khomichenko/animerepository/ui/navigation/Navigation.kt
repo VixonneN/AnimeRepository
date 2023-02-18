@@ -7,6 +7,10 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import com.example.feature_content.states.ContentEvent
+import com.example.feature_content.states.ContentSideEffect
+import com.example.feature_content.ui.ContentScreen
+import com.example.feature_content.view_model.ContentViewModel
 import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesSideEffect
 import com.example.feature_list_content.ui.ListTypesContentScreen
@@ -78,10 +82,37 @@ fun AnimatedNavigation(
             viewModel.collectSideEffect { sideEffect ->
                 when (sideEffect) {
                     is ListTypesSideEffect.NavigateToSecondScreen -> {
-                        //todo next nav
-//                        navController.navigate()
+                        navController.navigate(Screens.ContentScreen.route(
+                            typeContent = sideEffect.typeContent,
+                            type = sideEffect.type
+                        ))
                     }
                 }
+            }
+        }
+
+        composable(
+            route = Screens.ContentScreen.route,
+            arguments = Screens.ContentScreen.arguments
+        ) { navBachStackEntry ->
+            val viewModel: ContentViewModel = koinViewModel()
+            val screenState = viewModel.collectAsState().value
+
+            val typeContent = navBachStackEntry.arguments?.getString(Screens.TYPE_CONTENT) ?: ""
+            val type = navBachStackEntry.arguments?.getString(Screens.TYPE) ?: ""
+
+            LaunchedEffect(key1 = Unit, block = {
+                viewModel.dispatch(ContentEvent.LoadContent(typeContent = typeContent, type = type))
+            })
+
+            ContentScreen(
+                scaffoldState = scaffoldState,
+                screenState = screenState,
+                event = { viewModel.dispatch(it) }
+            )
+
+            viewModel.collectSideEffect { sideEffect ->
+
             }
         }
     }

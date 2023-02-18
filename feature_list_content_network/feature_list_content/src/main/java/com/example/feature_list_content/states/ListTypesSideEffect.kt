@@ -1,5 +1,5 @@
 package com.example.feature_list_content.states
 
 sealed class ListTypesSideEffect {
-    object NavigateToSecondScreen: ListTypesSideEffect()
+    data class NavigateToSecondScreen(val typeContent: String, val type: String): ListTypesSideEffect()
 }

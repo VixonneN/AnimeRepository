@@ -1,5 +1,5 @@
 package com.example.feature_content.states
 
 sealed class ContentEvent {
-    object LoadContent : ContentEvent()
+    data class LoadContent(val typeContent: String, val type: String) : ContentEvent()
 }

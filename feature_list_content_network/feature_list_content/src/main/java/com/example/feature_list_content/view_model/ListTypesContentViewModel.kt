@@ -4,6 +4,7 @@ import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesScreenState
 import com.example.feature_list_content.states.ListTypesSideEffect
 import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import ru.khomichenko.core.utils.ContentType
 import ru.khomichenko.core.utils.MviViewModel
@@ -14,7 +15,9 @@ class ListTypesContentViewModel(
 
     override fun dispatch(event: ListTypesContentEvent) {
         when(event) {
-            is ListTypesContentEvent.MoveToSelectedContent -> {  }
+            is ListTypesContentEvent.MoveToSelectedContent -> {
+                moveToContent(typeContent = event.contentType, type = event.contentType)
+            }
             is ListTypesContentEvent.SelectCorrectContentType -> checkContentType(content = event.contentType)
         }
     }
@@ -26,6 +29,15 @@ class ListTypesContentViewModel(
             } else {
                 reduce { state.copy(contentTypePng = true) }
             }
+        }
+    }
+
+    private fun moveToContent(typeContent: String, type: String) {
+        intent {
+            postSideEffect(ListTypesSideEffect.NavigateToSecondScreen(
+                typeContent = typeContent,
+                type = type
+            ))
         }
     }
 }

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.feature_list_content.states.ListTypesContentEvent
 import com.example.feature_list_content.states.ListTypesScreenState
+import ru.khomichenko.core.utils.ContentType
 import ru.khomichenko.feature_list_content.R
 
 @Composable
@@ -36,17 +37,17 @@ fun ListTypesContentScreen(
 
     when {
         screenState.contentTypePng -> {
-            ListOfTypes(list = picturesList)
+            ListOfTypes(list = picturesList, typeContent = ContentType.PNG.type, onEvent = event)
         }
 
         screenState.contentTypeGif -> {
-            ListOfTypes(list = gifsList)
+            ListOfTypes(list = gifsList, typeContent = ContentType.PNG.type, onEvent = event)
         }
     }
 }
 
 @Composable
-private fun ListOfTypes(list: List<String>) {
+private fun ListOfTypes(list: List<String>, typeContent: String, onEvent:(ListTypesContentEvent) -> Unit) {
     Box {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(list) { item ->
@@ -59,7 +60,10 @@ private fun ListOfTypes(list: List<String>) {
                                 MutableInteractionSource()
                             }
                         ) {
-                            //todo click
+                            onEvent(ListTypesContentEvent.MoveToSelectedContent(
+                                contentType = typeContent,
+                                type = item
+                            ))
                         }
                         .background(
                             color = MaterialTheme.colors.primary,
