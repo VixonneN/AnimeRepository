@@ -41,7 +41,7 @@ fun ListTypesContentScreen(
         }
 
         screenState.contentTypeGif -> {
-            ListOfTypes(list = gifsList, typeContent = ContentType.PNG.type, onEvent = event)
+            ListOfTypes(list = gifsList, typeContent = ContentType.GIF.type, onEvent = event)
         }
     }
 }

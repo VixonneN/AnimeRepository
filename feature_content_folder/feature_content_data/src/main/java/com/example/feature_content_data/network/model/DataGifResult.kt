@@ -4,7 +4,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ResponseImageResult(
-    @Json(name = "results")
-    val listResult: List<DataImagesResults>
+data class DataGifResult(
+    @Json(name = "anime_name")
+    val animeName: String,
+    val url: String
 )

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class DataResults(
+data class DataImagesResults(
     @Json(name = "artist_href")
     val artistHref: String,
     @Json(name = "artist_name")
