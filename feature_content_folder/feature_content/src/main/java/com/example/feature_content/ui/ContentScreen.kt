@@ -1,10 +1,8 @@
-@file:OptIn(ExperimentalGlideComposeApi::class)
+@file:OptIn(ExperimentalGlideComposeApi::class, ExperimentalGlideComposeApi::class)
 
 package com.example.feature_content.ui
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,8 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import com.bumptech.glide.Glide
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.feature_content.states.ContentEvent
 import com.example.feature_content.states.ContentScreenState
 import com.example.feature_content_data.network.model.DataGifResult
@@ -31,9 +27,6 @@ import com.example.feature_content_data.network.model.DataImagesResults
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.UUID
 
 @Composable
 fun ContentScreen(
@@ -49,16 +42,16 @@ fun ContentScreen(
             }
         }
         screenState.listImagesData.isNotEmpty() -> {
-            ListImageContent(listData = screenState.listImagesData)
+            ListImageContent(listData = screenState.listImagesData, onEvent = event)
         }
         screenState.listGifsData.isNotEmpty() -> {
-            ListGifsContent(listData = screenState.listGifsData)
+            ListGifsContent(listData = screenState.listGifsData, onEvent = event)
         }
     }
 }
 
 @Composable
-private fun ListImageContent(listData: List<DataImagesResults>) {
+private fun ListImageContent(listData: List<DataImagesResults>, onEvent: (ContentEvent) -> Unit) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     Box(modifier = Modifier.fillMaxSize()) {
@@ -72,7 +65,14 @@ private fun ListImageContent(listData: List<DataImagesResults>) {
                         model = itemResult.url,
                         contentDescription = null,
                         modifier = Modifier.clickable {
-                            loadImage(coroutineScope = coroutineScope, context = context, url = itemResult.url)
+                            coroutineScope.launch(Dispatchers.IO) {
+                                val bitmap = Glide.with(context)
+                                    .asBitmap()
+                                    .load(itemResult.url)
+                                    .submit()
+                                    .get()
+                                onEvent(ContentEvent.LoadPng(bitmap))
+                            }
                         }
                     )
                 }
@@ -81,28 +81,11 @@ private fun ListImageContent(listData: List<DataImagesResults>) {
     }
 }
 
-private fun loadImage(coroutineScope: CoroutineScope, context: Context, url: String) {
-    coroutineScope.launch(Dispatchers.IO) {
-        val result = Glide.with(context)
-            .asBitmap()
-            .load(url)
-            .submit()
-            .get()
-
-        try {
-            val outputStream = FileOutputStream(UUID.randomUUID().toString())
-            result.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            print("Success!")
-        } catch (e: IOException) {
-            e.printStackTrace()
-            print("Fail! :(")
-        }
-    }
-}
 
 @Composable
-private fun ListGifsContent(listData: List<DataGifResult>) {
+private fun ListGifsContent(listData: List<DataGifResult>, onEvent: (ContentEvent) -> Unit) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
             items(listData) { itemResult ->
@@ -114,18 +97,23 @@ private fun ListGifsContent(listData: List<DataGifResult>) {
                         model = itemResult.url,
                         contentDescription = null,
                         modifier = Modifier.clickable {
-                            val result = Glide.with(context)
-                                .asBitmap()
-                                .load(itemResult.url)
-                                .submit()
-                                .get()
-
+                            loadGif(coroutineScope, context, itemResult.url, onEvent)
                         }
-
                     )
 
                 }
             }
         }
+    }
+}
+
+private fun loadGif(coroutineScope: CoroutineScope, context: Context, url: String, onEvent:(ContentEvent) -> Unit) {
+    coroutineScope.launch(Dispatchers.IO) {
+        val result = Glide.with(context)
+            .asGif()
+            .load(url)
+            .submit()
+            .get()
+        onEvent(ContentEvent.LoadGif(result))
     }
 }
