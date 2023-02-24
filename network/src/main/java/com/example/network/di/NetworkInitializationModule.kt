@@ -1,5 +1,7 @@
-package com.example.network
+package com.example.network.di
 
+import com.example.network.NetworkFactory
+import com.example.network.NetworkService
 import org.koin.dsl.module
 
 object NetworkInitializationModule {

@@ -86,6 +86,8 @@ object Libs {
         const val coilSvg = "io.coil-kt:coil-svg:$coil"
         const val coilGifs = "io.coil-kt:coil-gif:$coil"
 
+        const val glideCompose = "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
 
         object Test {
             const val uiJunit = "androidx.compose.ui:ui-test-junit4:$composeVersion"
@@ -207,5 +209,5 @@ object Modules {
     const val featureListTypes = ":feature_list_content_network:feature_list_content"
     const val network = ":network"
     const val featureContent = ":feature_content_folder:feature_content"
-    const val featureContentData = "feature_content_folder:feature_content_data"
+    const val featureContentData = ":feature_content_folder:feature_content_data"
 }

@@ -2,9 +2,10 @@ package ru.khomichenko.animerepository.di
 
 import android.app.Application
 import com.example.feature_content.di.FeatureContentModule
+import com.example.feature_content_data.di.NetworkContentDataModule
 import com.example.feature_list_content.di.FeatureTypesContentModule
 import com.example.feature_main_data.di.NetworkContentModule
-import com.example.network.NetworkInitializationModule
+import com.example.network.di.NetworkInitializationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -28,6 +29,7 @@ class AnimeApplication : Application() {
         NetworkContentModule.module,
         FeatureTypesContentModule.module,
         FeatureContentModule.module,
-        FeatureMainModule.module
+        FeatureMainModule.module,
+        NetworkContentDataModule.module
     )
 }

@@ -7,6 +7,6 @@ import org.koin.dsl.module
 object FeatureContentModule {
 
     val module = module {
-        viewModel { ContentViewModel() }
+        viewModel { ContentViewModel(contentNetworkRepository = get()) }
     }
 }

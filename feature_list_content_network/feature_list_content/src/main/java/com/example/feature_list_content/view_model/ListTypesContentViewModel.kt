@@ -16,7 +16,7 @@ class ListTypesContentViewModel(
     override fun dispatch(event: ListTypesContentEvent) {
         when(event) {
             is ListTypesContentEvent.MoveToSelectedContent -> {
-                moveToContent(typeContent = event.contentType, type = event.contentType)
+                moveToContent(typeContent = event.contentType, type = event.type)
             }
             is ListTypesContentEvent.SelectCorrectContentType -> checkContentType(content = event.contentType)
         }

@@ -64,6 +64,8 @@ dependencies {
     debugImplementation(Libs.Boom.debugUiTooling)
     androidTestImplementation(Libs.Boom.composeBoom)
 
+    implementation(Libs.Compose.glideCompose)
+
     testImplementation(Libs.View.Test.jUnit)
 
     androidTestImplementation(Libs.View.AndroidTest.jUnit)
@@ -75,4 +77,5 @@ dependencies {
     debugImplementation(Libs.Compose.Debug.uiTestManifest)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.featureContentData))
 }

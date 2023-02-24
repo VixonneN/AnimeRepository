@@ -116,4 +116,5 @@ dependencies {
     implementation(project(Modules.featureMainData))
     implementation(project(Modules.featureListTypes))
     implementation(project(Modules.network))
+    implementation(project(Modules.featureContentData))
 }

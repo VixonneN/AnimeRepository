@@ -15,6 +15,7 @@ class MainViewModel(
 
     override fun dispatch(event: MainScreenEvent) {
         when (event) {
+            //todo send enum class and check later with when()
             MainScreenEvent.OnGifsClick -> onGifClick()
             MainScreenEvent.OnImagesClick -> onPicturesClick()
         }
