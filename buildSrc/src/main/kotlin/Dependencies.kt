@@ -36,6 +36,7 @@ object Plugins {
     const val daggerHilt = "dagger.hilt.android.plugin"
     const val kapt = "kotlin-kapt"
     const val androidLibrary = "com.android.library"
+    const val ksp = "com.google.devtools.ksp"
 }
 
 object Project {

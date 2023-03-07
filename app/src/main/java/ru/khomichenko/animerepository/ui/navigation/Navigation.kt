@@ -2,14 +2,12 @@
 
 package ru.khomichenko.animerepository.ui.navigation
 
-import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.example.feature_content.states.ContentEvent
-import com.example.feature_content.states.ContentSideEffect
 import com.example.feature_content.ui.ContentScreen
 import com.example.feature_content.view_model.ContentViewModel
 import com.example.feature_list_content.states.ListTypesContentEvent
@@ -84,12 +82,12 @@ fun AnimatedNavigation(
                 when (sideEffect) {
 
                     is ListTypesSideEffect.NavigateToSecondScreen -> {
-                        Log.e("TAG", "ListTypesContentScreens: typeContent = ${sideEffect.typeContent}")
-                        Log.e("TAG", "ListTypesContentScreens: type = ${sideEffect.type}")
-                        navController.navigate(Screens.ContentScreen.route(
-                            typeContent = sideEffect.typeContent,
-                            type = sideEffect.type
-                        ))
+                        navController.navigate(
+                            Screens.ContentScreen.route(
+                                typeContent = sideEffect.typeContent,
+                                type = sideEffect.type
+                            )
+                        )
                     }
                 }
             }
@@ -104,9 +102,6 @@ fun AnimatedNavigation(
 
             val typeContent = navBachStackEntry.arguments?.getString(Screens.TYPE_CONTENT) ?: ""
             val type = navBachStackEntry.arguments?.getString(Screens.TYPE) ?: ""
-
-            Log.e("TAG", "AnimatedNavigation: typeContent = $typeContent")
-            Log.e("TAG", "AnimatedNavigation: type = $type")
 
             LaunchedEffect(key1 = Unit, block = {
                 viewModel.dispatch(ContentEvent.LoadContent(typeContent = typeContent, type = type))

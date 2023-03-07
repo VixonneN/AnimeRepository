@@ -8,9 +8,12 @@ buildscript {
     dependencies {
         classpath(Project.Android.androidGradle)
         classpath(Project.Android.kotlinGradle)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.21")
     }
 }
+plugins {
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+}
+
 
 allprojects {
     repositories {

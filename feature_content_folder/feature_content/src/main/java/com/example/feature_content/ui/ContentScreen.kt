@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalGlideComposeApi::class, ExperimentalGlideComposeApi::class)
-
 package com.example.feature_content.ui
 
 import android.content.Context
@@ -50,6 +48,7 @@ fun ContentScreen(
     }
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun ListImageContent(listData: List<DataImagesResults>, onEvent: (ContentEvent) -> Unit) {
     val context = LocalContext.current
@@ -82,6 +81,7 @@ private fun ListImageContent(listData: List<DataImagesResults>, onEvent: (Conten
 }
 
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun ListGifsContent(listData: List<DataGifResult>, onEvent: (ContentEvent) -> Unit) {
     val context = LocalContext.current

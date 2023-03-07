@@ -2,15 +2,12 @@ package com.example.feature_content.view_model
 
 import android.graphics.Bitmap
 import android.os.Environment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.example.feature_content.states.ContentEvent
 import com.example.feature_content.states.ContentScreenState
 import com.example.feature_content.states.ContentSideEffect
 import com.example.feature_content_data.network.repository.ContentNetworkRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -138,6 +135,5 @@ class ContentViewModel(
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
     }
 }
